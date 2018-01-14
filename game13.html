@@ -39,12 +39,11 @@ window.onload = function() {
   setInterval(someFunction, 1000/framesPerSecond);
     
 
-    //!!!!!!!!!!!!!event listener for mouse click
-	canvas.addEventListener("mousedown", handleMouseClick);
+    document.addEventListener("keydown", handlePause);//!!!event listener for pressing ENTER to reset the ball when pause
 	
 	document.addEventListener("keypress", handlePaddle1);// movement of the paddle 1
 
-	document.addEventListener("keydown", handleKeyDown); //reset the gameafter victory
+	document.addEventListener("keydown", handleKeyDown); //reset the game after victory
 }
 // setting Paddle1 movement by keys
 function handlePaddle1(evt) {
@@ -61,11 +60,13 @@ function handlePaddle1(evt) {
 }
 
 //function that unpauses games on click event
-function handleMouseClick(evt) {
+function handlePause(evt) {
 	if(pause) {
+		if (evt.keyCode == 13) {
 		corB = "white";
 		ballReset();
 		pause = false;
+		}
 	}
 }
 
@@ -78,17 +79,6 @@ function handleKeyDown(evt) {
 			winScreen = false;
 		}
 	}
-}
-
-function calculateMousePos(evt) {
-	var rect = canvas.getBoundingClientRect();
-	var root = document.documentElement;
-	var mouseX = evt.clientX - rect.left - root.scrollLeft;
-	var mouseY = evt.clientY - rect.top - root.scrollTop;
-	return {
-		x:mouseX,
-		y:mouseY
-	};
 }
 
 function drawElements() {
