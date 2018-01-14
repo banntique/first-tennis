@@ -42,17 +42,23 @@ window.onload = function() {
     //!!!!!!!!!!!!!event listener for mouse click
 	canvas.addEventListener("mousedown", handleMouseClick);
 	
-	canvas.addEventListener("mousemove",
-		function(evt) {
-			var mousePos = calculateMousePos(evt);
-			paddle1Y = mousePos.y - paddleHeight/2;
-			});
-	
-	
-	
+	document.addEventListener("keypress", handlePaddle1);// movement of the paddle 1
+
 	document.addEventListener("keydown", handleKeyDown); //reset the gameafter victory
 }
-
+// setting Paddle1 movement by keys
+function handlePaddle1(evt) {
+	if(evt.keyCode == 38) {
+		if(paddle1Y > 0) {
+		paddle1Y -=30;
+		}
+	}
+	if(evt.keyCode == 40) {
+		if(paddle1Y < canvas.height - paddleHeight) {
+		paddle1Y +=30;
+		}
+	}
+}
 
 //function that unpauses games on click event
 function handleMouseClick(evt) {
