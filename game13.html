@@ -7,8 +7,8 @@ var canvasContext;
 var ballX = 100;
 var ballY = 100;
 var corB = "white";
-var ballSpeedX = 4;
-var ballSpeedY = 4;
+var ballSpeedX = 3;
+var ballSpeedY = 3;
 
 var paddle1Y = 250;
 var paddle2Y = 250;
@@ -29,7 +29,7 @@ window.onload = function() {
 	canvas = document.getElementById("gameCanvas");
 	canvasContext = canvas.getContext("2d");
 	
-	var framesPerSecond = 100;
+	var framesPerSecond = 120;
 	
 	var someFunction = function() {
   	drawElements();
@@ -37,10 +37,6 @@ window.onload = function() {
   }
   
   setInterval(someFunction, 1000/framesPerSecond);
-	/*setInterval(function() {
-		drawElements();
-		moveElements();
-	}, 1000/framesPerSecond); */
     
 
     //!!!!!!!!!!!!!event listener for mouse click
@@ -52,8 +48,11 @@ window.onload = function() {
 			paddle1Y = mousePos.y - paddleHeight/2;
 			});
 	
-	document.addEventListener("keydown", handleKeyDown);
+	
+	
+	document.addEventListener("keydown", handleKeyDown); //reset the gameafter victory
 }
+
 
 //function that unpauses games on click event
 function handleMouseClick(evt) {
@@ -144,10 +143,6 @@ function ballReset() {
     ballX = canvas.width-25;
     ballY = paddle2Y + paddleHeight/2;
     }
-    
-    /*ballSpeedX = -ballSpeedX;
-	ballX = canvas.width/2;
-	ballY = canvas.height/2;*/
 }
 
 function computerMovement() {
